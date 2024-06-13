@@ -1,0 +1,22 @@
+<form [formGroup]="transactionForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill">
+      <mat-label>ID</mat-label>
+      <input matInput formControlName="id" readonly>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Date</mat-label>
+      <input matInput formControlName="date" readonly>
+    </mat-form-field>
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Comments</mat-label>
+      <input matInput formControlName="Comments">
+      <mat-error *ngIf="transactionForm.get('Comments')!.hasError('required')">Comments are required</mat-error>
+      <mat-error *ngIf="transactionForm.get('Comments')!.hasError('pattern')">Only alphanumeric characters are allowed</mat-error>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" type="submit" [disabled]="transactionForm.invalid">Save</button>
+    <button mat-raised-button color="warn" type="button" (click)="router.navigate(['/'])">Cancel</button>
+  </form>
+  
